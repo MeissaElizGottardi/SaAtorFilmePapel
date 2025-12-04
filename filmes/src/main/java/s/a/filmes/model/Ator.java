@@ -22,7 +22,7 @@ import jakarta.persistence.Id;
     private String genero;
     private String nacionalidade;
     private String telefone;
-;
+
 
     public Ator() {}    
 
