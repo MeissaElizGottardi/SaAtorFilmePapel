@@ -26,6 +26,19 @@ import jakarta.persistence.Id;
 
     public Ator() {}    
 
+    public Ator(String cpf, LocalDate dataNascimento, String email, String genero, String nacionalidade, String nome, BigDecimal salario, String telefone) {
+        this.cpf = cpf;
+        this.dataNascimento = dataNascimento;
+        this.email = email;
+        this.genero = genero;
+        this.nacionalidade = nacionalidade;
+        this.nome = nome;
+        this.salario = salario;
+        this.telefone = telefone;
+    }
+
+    
+
     //ID
     public Long getId() {
         return id;}

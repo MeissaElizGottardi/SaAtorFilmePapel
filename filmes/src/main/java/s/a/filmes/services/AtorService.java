@@ -3,6 +3,7 @@ package s.a.filmes.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import s.a.filmes.exceptionAtor.AtorNaoEncontradoException;
 import s.a.filmes.model.Ator;
 import s.a.filmes.repository.AtorRepository;
 
@@ -48,6 +49,10 @@ public class AtorService {
         }
     }
     
+    public Ator getAtorById(Long id) {
+        return atorRepository.findById(id)
+                .orElseThrow(() -> new AtorNaoEncontradoException("Ator não encontrado: " + id));
+    }
 
 }
 
