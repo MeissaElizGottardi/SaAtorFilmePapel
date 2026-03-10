@@ -3,6 +3,7 @@ package s.a.filmes.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import s.a.filmes.dto.PapelDto;
 import s.a.filmes.model.Papel;
 import s.a.filmes.repository.PapelRepository;
 
@@ -14,9 +15,21 @@ public class PapelService {
     private PapelRepository papelRepository;
 
     //ADICIONAR PAPEL
-    public Papel adicionarPapel(Papel papel){
+    public Papel adicionarPapel(PapelDto papelDto){
         try {
-            return papelRepository.save(papel);
+
+            Papel papelSaved = new Papel();
+
+            papelSaved.setNome(papelDto.getNome());
+            papelSaved.setPersonagemPrincipal(papelDto.getPersonagemPrincipal());
+            papelSaved.setDescricao(papelDto.getDescricao());
+            papelSaved.setIdade(papelDto.getIdade());
+            papelSaved.setTempoCena(papelDto.getTempoCena());
+            papelSaved.setImportancia(papelDto.getImportancia());
+
+
+
+            return papelRepository.save(papelSaved);
         } catch (Exception e) {
             System.out.println("Erro ao adicionar papel: " + e.getMessage());
         }
@@ -24,18 +37,18 @@ public class PapelService {
     }
 
     //EDITAR PAPEL
-     public Papel editarPapel(Long id, Papel papelEditado) {
-    Papel papel = papelRepository.findById(id)
+     public Papel editarPapel(Long id, PapelDto papelEditadoDto) {
+    Papel papelDto = papelRepository.findById(id)
             .orElseThrow(() -> new IllegalArgumentException("Papel não encontrado: " + id));
       
-        papel.setNome(papelEditado.getNome());
-        papel.setPersonagemPrincipal(papelEditado.getPersonagemPrincipal());
-        papel.setDescricao(papelEditado.getDescricao());
-        papel.setIdade(papelEditado.getIdade());
-        papel.setTempoCena(papelEditado.getTempoCena());
-        papel.setImportancia(papelEditado.getImportancia());
+        papelDto.setNome(papelEditadoDto.getNome());
+        papelDto.setPersonagemPrincipal(papelEditadoDto.getPersonagemPrincipal());
+        papelDto.setDescricao(papelEditadoDto.getDescricao());
+        papelDto.setIdade(papelEditadoDto.getIdade());
+        papelDto.setTempoCena(papelEditadoDto.getTempoCena());
+        papelDto.setImportancia(papelEditadoDto.getImportancia());
  
-        return papelRepository.save(papel);
+        return papelRepository.save(papelDto);
     }
 
 

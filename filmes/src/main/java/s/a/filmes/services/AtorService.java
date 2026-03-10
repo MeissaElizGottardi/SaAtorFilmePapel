@@ -3,6 +3,7 @@ package s.a.filmes.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import s.a.filmes.dto.AtorDto;
 import s.a.filmes.exceptionAtor.AtorNaoEncontradoException;
 import s.a.filmes.model.Ator;
 import s.a.filmes.repository.AtorRepository;
@@ -14,9 +15,20 @@ public class AtorService {
     private AtorRepository atorRepository;
 
     // adicionar ator
-    public Ator adicionarAtor(Ator ator){
+    public Ator adicionarAtor(AtorDto atorDto){
         try {
-         return atorRepository.save(ator);
+        
+        Ator atorSaved = new Ator();
+        atorSaved.setNome(atorDto.getNome());
+        atorSaved.setDataNascimento(atorDto.getDataNascimento());
+        atorSaved.setCpf(atorDto.getCpf());
+        atorSaved.setEmail(atorDto.getEmail());
+        atorSaved.setSalario(atorDto.getSalario());
+        atorSaved.setGenero(atorDto.getGenero());
+        atorSaved.setNacionalidade(atorDto.getNacionalidade());
+        atorSaved.setTelefone(atorDto.getTelefone());
+
+         return atorRepository.save(atorSaved);
         } catch (Exception e) {
          System.out.println("Erro ao adicionar ator: " + e.getMessage());
             return null; // ou pode lançar exceção
@@ -24,20 +36,20 @@ public class AtorService {
 }
  
     //editar ator
-    public Ator editarAtor(Long id, Ator atorEditado) {
-    Ator ator = atorRepository.findById(id)
+    public Ator editarAtor(Long id, AtorDto atorEditadoDto) {
+    Ator AtorDto = atorRepository.findById(id)
             .orElseThrow(() -> new IllegalArgumentException("Ator não encontrado: " + id));
 
-    ator.setNome(atorEditado.getNome());
-    ator.setDataNascimento(atorEditado.getDataNascimento());
-    ator.setCpf(atorEditado.getCpf());
-    ator.setEmail(atorEditado.getEmail());
-    ator.setSalario(atorEditado.getSalario());
-    ator.setGenero(atorEditado.getGenero());
-    ator.setNacionalidade(atorEditado.getNacionalidade());
-    ator.setTelefone(atorEditado.getTelefone());
+    AtorDto.setNome(atorEditadoDto.getNome());
+    AtorDto.setDataNascimento(atorEditadoDto.getDataNascimento());
+    AtorDto.setCpf(atorEditadoDto.getCpf());
+    AtorDto.setEmail(atorEditadoDto.getEmail());
+    AtorDto.setSalario(atorEditadoDto.getSalario());
+    AtorDto.setGenero(atorEditadoDto.getGenero());
+    AtorDto.setNacionalidade(atorEditadoDto.getNacionalidade());
+    AtorDto.setTelefone(atorEditadoDto.getTelefone());
 
-    return atorRepository.save(ator); 
+    return atorRepository.save(AtorDto); 
 }
 
     //excluir ator

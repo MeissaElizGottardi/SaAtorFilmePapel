@@ -3,6 +3,7 @@ package s.a.filmes.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import s.a.filmes.dto.FilmeDto;
 import s.a.filmes.model.Filme;
 import s.a.filmes.repository.FilmeRepository;
 
@@ -15,9 +16,22 @@ public class FilmeService {
 
 
     //ADICIONAR FILME
-    public Filme adicionarFilme(Filme filme){
+    public Filme adicionarFilme(FilmeDto filmeDto){
         try {
-             return filmeRepository.save(filme);
+
+            Filme filmeSaved = new Filme();
+            filmeSaved.setNome(filmeDto.getNome());
+            filmeSaved.setDiretor(filmeDto.getDiretor());
+            filmeSaved.setDescricao(filmeDto.getDescricao());
+            filmeSaved.setGenero(filmeDto.getGenero());
+            filmeSaved.setDataLancamento(filmeDto.getDataLancamento());
+            filmeSaved.setOrcamento(filmeDto.getOrcamento());
+            filmeSaved.setIdiomaOriginal(filmeDto.getIdiomaOriginal());
+            filmeSaved.setDuracao(filmeDto.getDuracao());
+            filmeSaved.setPaisOrigem(filmeDto.getPaisOrigem());
+            filmeSaved.setClassificacaoIndicativa(filmeDto.getClassificacaoIndicativa());
+
+             return filmeRepository.save(filmeSaved);
         } catch (Exception e) {
             System.out.println("Erro ao adicionar filme: " + e.getMessage());
         }
@@ -26,22 +40,22 @@ public class FilmeService {
 
     
     //EDITAR FILME
-    public Filme editarFilme(Long id, Filme filmeEditado) {
-    Filme filme = filmeRepository.findById(id)
+    public Filme editarFilme(Long id, FilmeDto filmeEditadoDto) {
+    Filme filmeDto = filmeRepository.findById(id)
             .orElseThrow(() -> new IllegalArgumentException("Filme não encontrado: " + id));
 
-    filme.setNome(filmeEditado.getNome());
-    filme.setDiretor(filmeEditado.getDiretor());
-    filme.setDescricao(filmeEditado.getDescricao());
-    filme.setGenero(filmeEditado.getGenero());
-    filme.setDataLancamento(filmeEditado.getDataLancamento());
-    filme.setOrcamento(filmeEditado.getOrcamento());
-    filme.setIdiomaOriginal(filmeEditado.getIdiomaOriginal());
-    filme.setDuracao(filmeEditado.getDuracao());
-    filme.setClassificacaoIndicativa(filmeEditado.getClassificacaoIndicativa());
+    filmeDto.setNome(filmeEditadoDto.getNome());
+    filmeDto.setDiretor(filmeEditadoDto.getDiretor());
+    filmeDto.setDescricao(filmeEditadoDto.getDescricao());
+    filmeDto.setGenero(filmeEditadoDto.getGenero());
+    filmeDto.setDataLancamento(filmeEditadoDto.getDataLancamento());
+    filmeDto.setOrcamento(filmeEditadoDto.getOrcamento());
+    filmeDto.setIdiomaOriginal(filmeEditadoDto.getIdiomaOriginal());
+    filmeDto.setDuracao(filmeEditadoDto.getDuracao());
+    filmeDto.setClassificacaoIndicativa(filmeEditadoDto.getClassificacaoIndicativa());
 
 
-    return filmeRepository.save(filme); 
+    return filmeRepository.save(filmeDto); 
 }
 
     //EXCLUIR FILME

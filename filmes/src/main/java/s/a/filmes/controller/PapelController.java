@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import s.a.filmes.dto.PapelDto;
 import s.a.filmes.model.Papel;
 import s.a.filmes.services.PapelService;
 
@@ -26,16 +27,16 @@ public class PapelController {
     
     //ADICIONAR PAPEL  
     @PostMapping("/adicionarPapel")
-    public ResponseEntity<Papel> adicionarPapel(@RequestBody Papel papel) {
-        Papel novoPapel = PapelService.adicionarPapel(papel);
+    public ResponseEntity<Papel> adicionarPapel(@RequestBody PapelDto papelDto) {
+        Papel novoPapel = PapelService.adicionarPapel(papelDto);
         return ResponseEntity.created(URI.create("/papel/" + novoPapel.getId())).body(novoPapel); 
 
     }
 
     //EDITAR PAPEL
     @PutMapping("/editarPapel/{id}")
-    public ResponseEntity<Papel> editarPapel(@PathVariable Long id, @RequestBody Papel papel) {
-        Papel papelEditado = PapelService.editarPapel(id, papel);
+    public ResponseEntity<Papel> editarPapel(@PathVariable Long id, @RequestBody PapelDto papelDto) {
+        Papel papelEditado = PapelService.editarPapel(id, papelDto);
         return ResponseEntity.ok(papelEditado);
     }
 

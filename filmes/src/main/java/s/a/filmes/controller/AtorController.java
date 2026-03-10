@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import s.a.filmes.dto.AtorDto;
 import s.a.filmes.model.Ator;
 import s.a.filmes.services.AtorService;
 
@@ -27,15 +28,15 @@ public class AtorController {
 
     //ADICIONAR ATOR
    @PostMapping("/adicionarAtor")
-    public ResponseEntity<Ator> adicionarAtor(@RequestBody Ator ator) {
-    Ator novoAtor = AtorService.adicionarAtor(ator);
+    public ResponseEntity<Ator> adicionarAtor(@RequestBody AtorDto atorDto) {
+    Ator novoAtor = AtorService.adicionarAtor(atorDto);
     return ResponseEntity.created(URI.create("/ator/" + novoAtor.getId())).body(novoAtor);
 }
 
     //EDITAR ATOR
    @PutMapping("/editarAtor/{id}")
-    public ResponseEntity<Ator> editarAtor(@PathVariable Long id, @RequestBody Ator ator) {
-    Ator atorEditado = AtorService.editarAtor(id, ator);
+    public ResponseEntity<Ator> editarAtor(@PathVariable Long id, @RequestBody AtorDto atorDto) {
+    Ator atorEditado = AtorService.editarAtor(id, atorDto);
     return ResponseEntity.ok(atorEditado);
 }
 

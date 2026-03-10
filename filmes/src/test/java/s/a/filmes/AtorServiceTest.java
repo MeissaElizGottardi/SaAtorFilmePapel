@@ -12,6 +12,7 @@ import org.mockito.Mock;
 import static org.mockito.Mockito.when;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import s.a.filmes.dto.AtorDto;
 import s.a.filmes.model.Ator;
 import s.a.filmes.repository.AtorRepository;
 import s.a.filmes.services.AtorService;
@@ -27,8 +28,9 @@ class AtorServiceTest {
 
     @Test
     void deveCadastrarAtorComSucesso() {
+
         // Entrada
-        Ator atorEntrada = new Ator();
+        AtorDto atorEntrada = new AtorDto();
         atorEntrada.setNome("Robert Downey Jr.");
         atorEntrada.setDataNascimento(LocalDate.of(1965, 4, 4));
         atorEntrada.setNacionalidade("Americano");

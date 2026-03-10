@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import s.a.filmes.dto.FilmeDto;
 import s.a.filmes.model.Filme;
 import s.a.filmes.services.FilmeService;
 
@@ -26,15 +27,15 @@ public class FilmeController {
     
      ///ADICIONAR FILME
    @PostMapping("/adicionarFilme")
-    public ResponseEntity<Filme> adicionarFilme(@RequestBody Filme filme) {
-    Filme novoFilme = FilmeService.adicionarFilme(filme);
+    public ResponseEntity<Filme> adicionarFilme(@RequestBody FilmeDto filmeDto) {
+    Filme novoFilme = FilmeService.adicionarFilme(filmeDto);
     return ResponseEntity.created(URI.create("/filme/" + novoFilme.getId())).body(novoFilme);
 }
 
     //EDITAR FILME
    @PutMapping("/editarFilme/{id}")
-    public ResponseEntity<Filme> editarAtor(@PathVariable Long id, @RequestBody Filme filme) {
-    Filme filmeEditado = FilmeService.editarFilme(id, filme);
+    public ResponseEntity<Filme> editarAtor(@PathVariable Long id, @RequestBody FilmeDto filmeDto) {
+    Filme filmeEditado = FilmeService.editarFilme(id, filmeDto);
     return ResponseEntity.ok(filmeEditado);
 }
 
