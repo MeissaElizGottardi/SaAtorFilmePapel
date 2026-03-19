@@ -2,19 +2,24 @@ package s.a.filmes.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 
     @Entity
     public class Ator {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate dataNascimento;
     private String cpf;
     private String email;
@@ -23,11 +28,14 @@ import jakarta.persistence.Id;
     private String nacionalidade;
     private String telefone;
 
-
+    
+@ManyToMany(mappedBy = "atores")
+private List<Filme> filmes;
     public Ator() {}    
 
     public Ator(String cpf, LocalDate dataNascimento, String email, String genero, String nacionalidade, String nome, BigDecimal salario, String telefone) {
         this.cpf = cpf;
+
         this.dataNascimento = dataNascimento;
         this.email = email;
         this.genero = genero;
@@ -36,8 +44,6 @@ import jakarta.persistence.Id;
         this.salario = salario;
         this.telefone = telefone;
     }
-
-    
 
     //ID
     public Long getId() {

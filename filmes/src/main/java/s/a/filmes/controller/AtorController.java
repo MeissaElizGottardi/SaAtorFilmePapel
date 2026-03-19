@@ -13,51 +13,45 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import s.a.filmes.dto.AtorDto;
 import s.a.filmes.model.Ator;
 import s.a.filmes.services.AtorService;
 
-
-
 @RestController
 @RequestMapping("/ator")
+@Tag(name = "Ator", description = "Gerenciamento de atores")
 public class AtorController {
-    
-    @Autowired 
-    private AtorService AtorService;
+
+    @Autowired
+    private AtorService atorService;
 
     //ADICIONAR ATOR
-   @PostMapping("/adicionarAtor")
+    @PostMapping("/adicionarAtor")
     public ResponseEntity<Ator> adicionarAtor(@RequestBody AtorDto atorDto) {
-    Ator novoAtor = AtorService.adicionarAtor(atorDto);
-    return ResponseEntity.created(URI.create("/ator/" + novoAtor.getId())).body(novoAtor);
-}
-
-    //EDITAR ATOR
-   @PutMapping("/editarAtor/{id}")
-    public ResponseEntity<Ator> editarAtor(@PathVariable Long id, @RequestBody AtorDto atorDto) {
-    Ator atorEditado = AtorService.editarAtor(id, atorDto);
-    return ResponseEntity.ok(atorEditado);
-}
-
-    //EXCLUIR ATOR
-    @DeleteMapping("/excluirAtor/{id}")
-    public ResponseEntity<Ator> excluirAtor(@PathVariable Long id) {
-       AtorService.excluirAtor(id);
-        return ResponseEntity.noContent().build();     
-}
-
-    @GetMapping("buscarAtor/{id}")
-    public ResponseEntity<Ator> buscarAtorporId(@PathVariable Long id) {
-        Ator ator = AtorService.getAtorById(id);
-       return ResponseEntity.ok(ator);
-    
+        Ator novoAtor = atorService.adicionarAtor(atorDto);
+        return ResponseEntity.created(URI.create("/ator/" + novoAtor.getId())).body(novoAtor);
     }
-    
 
+    //EDITAR ATOR PELO ID
+    @PutMapping("/editarAtor/{id}")
+    public ResponseEntity<Ator> editarAtor(@PathVariable Long id, @RequestBody AtorDto atorDto) {
+        Ator atorEditado = atorService.editarAtor(id, atorDto);
+        return ResponseEntity.ok(atorEditado);
+    }
+
+    //BUSCAR ATOR PELO ID
+    @GetMapping("/buscarAtor/{id}")
+    public ResponseEntity<Ator> buscarAtorporId(@PathVariable Long id) {
+        Ator ator = atorService.getAtorById(id);
+        return ResponseEntity.ok(ator);
+
+    }
+
+    //EXCLUIR ATOR PELO ID
+    @DeleteMapping("/excluirAtor/{id}")
+    public ResponseEntity<String> excluirAtor(@PathVariable Long id) {
+        atorService.excluirAtor(id);
+        return ResponseEntity.ok("Ator " + id + " excluído com sucesso");
+    }
 }
-
-    
-    
-
-

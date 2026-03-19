@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import s.a.filmes.dto.PapelDto;
+import s.a.filmes.exceptionPapel.PapelNaoEncontradoException;
 import s.a.filmes.model.Papel;
 import s.a.filmes.repository.PapelRepository;
 
@@ -51,6 +52,11 @@ public class PapelService {
         return papelRepository.save(papelDto);
     }
 
+    // BUSCAR PAPEL  POR ID
+     public Papel getPapelById(Long id) {
+        return papelRepository.findById(id)
+                .orElseThrow(() -> new PapelNaoEncontradoException("Papel não encontrado: " + id));
+    }
 
     //EXCLUIR PAPEL
     public void excluirPapel(Long id){

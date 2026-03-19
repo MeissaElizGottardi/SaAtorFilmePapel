@@ -3,9 +3,12 @@ package s.a.filmes.dto;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class AtorDto {
 
     private String nome;
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate dataNascimento;
     private String cpf;
     private String email;
@@ -93,6 +96,4 @@ public class AtorDto {
         this.telefone = telefone;
     }
 
-
-    
 }
