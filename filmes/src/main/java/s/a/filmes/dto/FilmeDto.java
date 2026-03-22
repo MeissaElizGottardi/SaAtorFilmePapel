@@ -7,38 +7,47 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class FilmeDto {
 
+    // Atributos do FilmeDto
     private String nome;
     private String diretor;
     private String descricao;
     private String genero;
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private LocalDate dataLancamento;
     private BigDecimal orcamento;
     private String idiomaOriginal;
     private Integer duracao;
     private String paisOrigem;
     private String classificacaoIndicativa;
+
     @JsonFormat(pattern = "yyyy-MM-dd")
-    private LocalDate dataFimGravacoes;
-    private boolean publicado = false;
-    private boolean gravacoesIniciadas = false;
+    private LocalDate dataPrevistaInicioGravacoes;
 
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate dataPrevistaFimGravacoes;
+
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate dataPrevistaLancamento;
+
+    // 1- Construtor Padrão
     public FilmeDto() {
-
     }
 
-    public FilmeDto(String classificacaoIndicativa, LocalDate dataFimGravacoes, LocalDate dataLancamento, String descricao, String diretor, Integer duracao, String genero, String idiomaOriginal, String nome, BigDecimal orcamento, String paisOrigem) {
-        this.classificacaoIndicativa = classificacaoIndicativa;
-        this.dataFimGravacoes = dataFimGravacoes;
-        this.dataLancamento = dataLancamento;
-        this.descricao = descricao;
-        this.diretor = diretor;
-        this.duracao = duracao;
-        this.genero = genero;
-        this.idiomaOriginal = idiomaOriginal;
+    // 2- Construtor Completo
+    public FilmeDto(String nome, String diretor, String descricao, String genero, BigDecimal orcamento,
+            String idiomaOriginal, Integer duracao, String paisOrigem, String classificacaoIndicativa,
+            LocalDate dataPrevistaInicioGravacoes, LocalDate dataPrevistaFimGravacoes,
+            LocalDate dataPrevistaLancamento) {
         this.nome = nome;
+        this.diretor = diretor;
+        this.descricao = descricao;
+        this.genero = genero;
         this.orcamento = orcamento;
+        this.idiomaOriginal = idiomaOriginal;
+        this.duracao = duracao;
         this.paisOrigem = paisOrigem;
+        this.classificacaoIndicativa = classificacaoIndicativa;
+        this.dataPrevistaInicioGravacoes = dataPrevistaInicioGravacoes;
+        this.dataPrevistaFimGravacoes = dataPrevistaFimGravacoes;
+        this.dataPrevistaLancamento = dataPrevistaLancamento;
     }
 
     // GETTERS E SETTERS
@@ -72,14 +81,6 @@ public class FilmeDto {
 
     public void setGenero(String genero) {
         this.genero = genero;
-    }
-
-    public LocalDate getDataLancamento() {
-        return dataLancamento;
-    }
-
-    public void setDataLancamento(LocalDate dataLancamento) {
-        this.dataLancamento = dataLancamento;
     }
 
     public BigDecimal getOrcamento() {
@@ -122,28 +123,27 @@ public class FilmeDto {
         this.classificacaoIndicativa = classificacaoIndicativa;
     }
 
-    public LocalDate getDataFimGravacoes() {
-        return dataFimGravacoes;
+    public LocalDate getDataPrevistaInicioGravacoes() {
+        return dataPrevistaInicioGravacoes;
     }
 
-    public void setDataFimGravacoes(LocalDate dataFimGravacoes) {
-        this.dataFimGravacoes = dataFimGravacoes;
+    public void setDataPrevistaInicioGravacoes(LocalDate dataPrevistaInicioGravacoes) {
+        this.dataPrevistaInicioGravacoes = dataPrevistaInicioGravacoes;
     }
 
-    public boolean isPublicado() {
-        return publicado;
+    public LocalDate getDataPrevistaFimGravacoes() {
+        return dataPrevistaFimGravacoes;
     }
 
-    public void setPublicado(boolean publicado) {
-        this.publicado = publicado;
+    public void setDataPrevistaFimGravacoes(LocalDate dataPrevistaFimGravacoes) {
+        this.dataPrevistaFimGravacoes = dataPrevistaFimGravacoes;
     }
 
-    public boolean isGravacoesIniciadas() {
-        return gravacoesIniciadas;
+    public LocalDate getDataPrevistaLancamento() {
+        return dataPrevistaLancamento;
     }
 
-    public void setGravacoesIniciadas(boolean gravacoesIniciadas) {
-        this.gravacoesIniciadas = gravacoesIniciadas;
+    public void setDataPrevistaLancamento(LocalDate dataPrevistaLancamento) {
+        this.dataPrevistaLancamento = dataPrevistaLancamento;
     }
-
 }

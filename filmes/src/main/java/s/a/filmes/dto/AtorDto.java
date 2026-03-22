@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class AtorDto {
 
+    // Atributos do AtorDto
     private String nome;
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate dataNascimento;
@@ -17,9 +18,11 @@ public class AtorDto {
     private String nacionalidade;
     private String telefone;
 
+    // 1- Construtor Padrão
     public AtorDto() {
     }
 
+    // 2- Construtor Completo
     public AtorDto(String nome, LocalDate dataNascimento, String cpf, String email, BigDecimal salario,
             String genero, String nacionalidade, String telefone) {
         this.nome = nome;
@@ -32,6 +35,7 @@ public class AtorDto {
         this.telefone = telefone;
     }
 
+    // GETTERS E SETTERS
     public String getNome() {
         return nome;
     }

@@ -9,6 +9,9 @@ import s.a.filmes.model.Papel;
 
 @Repository
 public interface PapelRepository extends JpaRepository<Papel, Long> {
-    List<Papel> findByFilme_Id(Long filmeId); // underscore obrigatório
+    
+    // Métodos personalizados para buscar papéis por filme ou ator
+    List<Papel> findByFilme_Id(Long filmeId); 
+    List<Papel> findByAtor_Id(Long atorId); 
 
 }

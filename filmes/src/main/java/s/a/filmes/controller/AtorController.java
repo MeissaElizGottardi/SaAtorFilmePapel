@@ -26,21 +26,21 @@ public class AtorController {
     @Autowired
     private AtorService atorService;
 
-    //ADICIONAR ATOR
+    // ADICIONAR ATOR
     @PostMapping("/adicionarAtor")
     public ResponseEntity<Ator> adicionarAtor(@RequestBody AtorDto atorDto) {
         Ator novoAtor = atorService.adicionarAtor(atorDto);
         return ResponseEntity.created(URI.create("/ator/" + novoAtor.getId())).body(novoAtor);
     }
 
-    //EDITAR ATOR PELO ID
+    // EDITAR ATOR PELO ID
     @PutMapping("/editarAtor/{id}")
     public ResponseEntity<Ator> editarAtor(@PathVariable Long id, @RequestBody AtorDto atorDto) {
         Ator atorEditado = atorService.editarAtor(id, atorDto);
         return ResponseEntity.ok(atorEditado);
     }
 
-    //BUSCAR ATOR PELO ID
+    // BUSCAR ATOR PELO ID
     @GetMapping("/buscarAtor/{id}")
     public ResponseEntity<Ator> buscarAtorporId(@PathVariable Long id) {
         Ator ator = atorService.getAtorById(id);
@@ -48,7 +48,7 @@ public class AtorController {
 
     }
 
-    //EXCLUIR ATOR PELO ID
+    // EXCLUIR ATOR PELO ID
     @DeleteMapping("/excluirAtor/{id}")
     public ResponseEntity<String> excluirAtor(@PathVariable Long id) {
         atorService.excluirAtor(id);

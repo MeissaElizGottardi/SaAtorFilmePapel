@@ -26,7 +26,7 @@ public class PapelController {
     @Autowired
     private PapelService papelService;
 
-    //ADICIONAR PAPEL  
+    // ADICIONAR PAPEL
     @PostMapping("/adicionarPapel")
     public ResponseEntity<Papel> adicionarPapel(@RequestBody PapelDto papelDto) {
         Papel novoPapel = papelService.adicionarPapel(papelDto);
@@ -34,14 +34,14 @@ public class PapelController {
 
     }
 
-    //EDITAR PAPEL
+    // EDITAR PAPEL
     @PutMapping("/editarPapel/{id}")
     public ResponseEntity<Papel> editarPapel(@PathVariable Long id, @RequestBody PapelDto papelDto) {
         Papel papelEditado = papelService.editarPapel(id, papelDto);
         return ResponseEntity.ok(papelEditado);
     }
 
-    //BUSCAR PAPEL PELO ID
+    // BUSCAR PAPEL PELO ID
     @GetMapping("/buscarPapel/{id}")
     public ResponseEntity<Papel> buscarPapelporId(@PathVariable Long id) {
         Papel papel = papelService.getPapelById(id);
@@ -49,11 +49,11 @@ public class PapelController {
 
     }
 
-    //EXCLUIR PAPEL
+    // EXCLUIR PAPEL
     @DeleteMapping("/excluirPapel/{id}")
-    public ResponseEntity<Papel> excluirPapel(@PathVariable Long id) {
+    public ResponseEntity<String> excluirPapel(@PathVariable Long id) {
         papelService.excluirPapel(id);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok("Papel " + id + " excluído com sucesso");
 
     }
 }

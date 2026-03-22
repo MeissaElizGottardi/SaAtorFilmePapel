@@ -2,28 +2,35 @@ package s.a.filmes.dto;
 
 import java.time.LocalDate;
 
+//
 public class PapelDto {
 
+    // Atributos do PapelDto
     private String nome;
-    private String personagemPrincipal;
+    private Boolean personagemPrincipal;
     private String descricao;
     private LocalDate idade;
-    private String tempoCena;
-    private String importancia;
+    private Integer tempoCena;
+    private Long idFilme;
+    private Long idAtor;
 
+    // 1- Construtor Padrão
     public PapelDto() {
     }
 
-    public PapelDto(String nome, String personagemPrincipal, String descricao, LocalDate idade, String tempoCena,
-            String importancia) {
+    // 2- Construtor Completo
+    public PapelDto(String nome, Boolean personagemPrincipal, String descricao, LocalDate idade,
+            Integer tempoCena, Long idFilme, Long idAtor) {
         this.nome = nome;
         this.personagemPrincipal = personagemPrincipal;
         this.descricao = descricao;
         this.idade = idade;
         this.tempoCena = tempoCena;
-        this.importancia = importancia;
+        this.idFilme = idFilme;
+        this.idAtor = idAtor;
     }
 
+    // GETTERS E SETTERS
     public String getNome() {
         return nome;
     }
@@ -32,11 +39,11 @@ public class PapelDto {
         this.nome = nome;
     }
 
-    public String getPersonagemPrincipal() {
+    public Boolean getPersonagemPrincipal() {
         return personagemPrincipal;
     }
 
-    public void setPersonagemPrincipal(String personagemPrincipal) {
+    public void setPersonagemPrincipal(Boolean personagemPrincipal) {
         this.personagemPrincipal = personagemPrincipal;
     }
 
@@ -56,19 +63,28 @@ public class PapelDto {
         this.idade = idade;
     }
 
-    public String getTempoCena() {
+    public Integer getTempoCena() {
         return tempoCena;
     }
 
-    public void setTempoCena(String tempoCena) {
+    public void setTempoCena(Integer tempoCena) {
         this.tempoCena = tempoCena;
     }
 
-    public String getImportancia() {
-        return importancia;
+    // MUITO IMPORTANTE: Getters e Setters para os IDs de relacionamento
+    public Long getIdFilme() {
+        return idFilme;
     }
 
-    public void setImportancia(String importancia) {
-        this.importancia = importancia;
+    public void setIdFilme(Long idFilme) {
+        this.idFilme = idFilme;
+    }
+
+    public Long getIdAtor() {
+        return idAtor;
+    }
+
+    public void setIdAtor(Long idAtor) {
+        this.idAtor = idAtor;
     }
 }

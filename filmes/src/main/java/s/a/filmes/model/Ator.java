@@ -12,9 +12,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 
-    @Entity
-    public class Ator {
+@Entity
+public class Ator {
 
+    // Atributos do Ator
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -28,12 +29,17 @@ import jakarta.persistence.ManyToMany;
     private String nacionalidade;
     private String telefone;
 
-    
-@ManyToMany(mappedBy = "atores")
-private List<Filme> filmes;
-    public Ator() {}    
+    // Relacionamento com Filme (muitos para muitos)
+    @ManyToMany(mappedBy = "atores")
+    private List<Filme> filmes;
 
-    public Ator(String cpf, LocalDate dataNascimento, String email, String genero, String nacionalidade, String nome, BigDecimal salario, String telefone) {
+    // Construtor padrão
+    public Ator() {
+    }
+
+    // Construtor completo
+    public Ator(String cpf, LocalDate dataNascimento, String email, String genero, String nacionalidade, String nome,
+            BigDecimal salario, String telefone) {
         this.cpf = cpf;
 
         this.dataNascimento = dataNascimento;
@@ -45,29 +51,31 @@ private List<Filme> filmes;
         this.telefone = telefone;
     }
 
-    //ID
+    // Getters e Setters
     public Long getId() {
-        return id;}
+        return id;
+    }
 
     public void setId(Long id) {
-        this.id = id;}
+        this.id = id;
+    }
 
-
-    //NOME
     public String getNome() {
-        return nome;}
+        return nome;
+    }
 
     public void setNome(String nome) {
-        this.nome = nome;}
+        this.nome = nome;
+    }
 
-    //DATA DE NASCIMENTO
     public LocalDate getDataNascimento() {
-        return dataNascimento;}
+        return dataNascimento;
+    }
 
     public void setDataNascimento(LocalDate dataNascimento) {
-        this.dataNascimento = dataNascimento;}
+        this.dataNascimento = dataNascimento;
+    }
 
-    //CPF
     public String getCpf() {
         return cpf;
     }
@@ -76,25 +84,22 @@ private List<Filme> filmes;
         this.cpf = cpf;
     }
 
-    //EMAIL
     public String getEmail() {
         return email;
     }
-    
+
     public void setEmail(String email) {
         this.email = email;
     }
 
-    //SALARIO
     public BigDecimal getSalario() {
         return salario;
     }
 
-    public void setSalario(BigDecimal  salario) {
+    public void setSalario(BigDecimal salario) {
         this.salario = salario;
     }
 
-    //GENERO
     public String getGenero() {
         return genero;
     }
@@ -103,8 +108,6 @@ private List<Filme> filmes;
         this.genero = genero;
     }
 
-
-    //NACIONALIDADE
     public String getNacionalidade() {
         return nacionalidade;
     }
@@ -113,12 +116,12 @@ private List<Filme> filmes;
         this.nacionalidade = nacionalidade;
     }
 
-    //TELEFONE
     public String getTelefone() {
         return telefone;
     }
+
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
-    
+
 }
