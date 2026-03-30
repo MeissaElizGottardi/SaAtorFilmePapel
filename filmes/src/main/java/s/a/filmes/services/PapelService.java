@@ -10,14 +10,13 @@ import org.springframework.stereotype.Service;
 import io.micrometer.common.util.StringUtils;
 import s.a.filmes.dto.PapelDto;
 import s.a.filmes.exceptionAtor.AtorNaoEncontradoException;
-import s.a.filmes.exceptionPapel.IdadeInvalidaException;
 import s.a.filmes.exceptionFilme.CampoNaoInformadoException;
 import s.a.filmes.exceptionFilme.FilmeNaoEncontradoException;
 import s.a.filmes.exceptionPapel.CaracteresInvalidosException;
 import s.a.filmes.exceptionPapel.DescricaoMinimaException;
 import s.a.filmes.exceptionPapel.ExcluirPapelException;
+import s.a.filmes.exceptionPapel.IdadeInvalidaException;
 import s.a.filmes.exceptionPapel.PapelNaoEncontradoException;
-
 import s.a.filmes.model.Ator;
 import s.a.filmes.model.Filme;
 import s.a.filmes.model.Papel;
